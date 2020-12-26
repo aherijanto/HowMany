@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CalculateChar {
@@ -16,21 +17,30 @@ public class CalculateChar {
         return jumlahHitung;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        char choice;
+        do{
+            Runtime.getRuntime().exec("clear");
+            Scanner sc = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+            System.out.print("Masukkan Text = ");
+            String kalimat = sc.nextLine();
 
-        System.out.print("Masukkan Text = ");
-        String kalimat = sc.nextLine();
+            System.out.print("Masukkan Huruf Yang Akan Dihitung Jumlahnya = ");
+            char karakter = sc.next().charAt(0);
 
-        System.out.print("Masukkan Huruf Yang Akan Dihitung Jumlahnya = ");
-        char karakter = sc.next().charAt(0);
+            int panjangKalimat = kalimat.length();
+            char[] kalimatToChar = new char[panjangKalimat];
 
-        int panjangKalimat = kalimat.length();
-        char[] kalimatToChar = new char[panjangKalimat];
+            int jumlahKata = CalculateChar.HitungKata(panjangKalimat,kalimatToChar,kalimat,karakter);
 
-        int jumlahKata = CalculateChar.HitungKata(panjangKalimat,kalimatToChar,kalimat,karakter);
+            System.out.println("Total Jumlah huruf " + karakter + " dalam kalimat " + kalimat + " adalah = " + jumlahKata);
+            System.out.print("Coba lagi [y/n] ? ");
+            choice = sc.next().charAt(0);
+            System.out.println("\n");
 
-        System.out.println("Total Jumlah huruf " + karakter + " dalam kalimat " + kalimat + " adalah = " + jumlahKata);
+
+        }while(choice!='n');
     }
+
 }
